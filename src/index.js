@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from "./components/views/home";
 import Contact from "./components/views/contact";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 class App extends Component {
     render() {
         return (
