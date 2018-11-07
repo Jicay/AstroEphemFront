@@ -2,7 +2,7 @@
   "name": "astro-ephem-front",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "engines": {
     "npm": "5.7.1",
     "node": "10.1.0"
