@@ -4,38 +4,33 @@ import {
     FormGroup, Label, Input,
     Button,
 } from 'reactstrap';
+import Day from "./day";
+import DaysService from '../services/DaysService';
+
+const days_service = new DaysService();
+
 export default class Home extends Component {
+    constructor(props) {
+        super(props);
+        this.state  = {
+            days: []
+        };
+    }
+
     componentDidMount() {
+        let self  =  this;
+        days_service.getDays().then(function (result) {
+            self.setState({ days:  result})
+        });
     }
     render() {
+        const { days } = this.state;
+        console.log(days);
         return (
             <Container className="home">
-                <h2>Sign In</h2>
-                <Form className="form">
-                    <Col>
-                        <FormGroup>
-                            <Label>Email</Label>
-                            <Input
-                                type="email"
-                                name="email"
-                                id="exampleEmail"
-                                placeholder="myemail@email.com"
-                            />
-                        </FormGroup>
-                    </Col>
-                    <Col>
-                        <FormGroup>
-                            <Label for="examplePassword">Password</Label>
-                            <Input
-                                type="password"
-                                name="password"
-                                id="examplePassword"
-                                placeholder="********"
-                            />
-                        </FormGroup>
-                    </Col>
-                    <Button>Submit</Button>
-                </Form>
+                { days.map((day) => (
+                    <Day day={day}/>
+                ))}
             </Container>
         );
     }
