@@ -1,0 +1,28 @@
+.day_date {
+  width: 7%;
+  float: left;
+  color: #FFFFFF;
+  text-align: center;
+  margin: 0px 2px 5px 0px;
+  font-size: 4.5em;
+  line-height: 55px;
+  background: #104377;
+  overflow: hidden;
+
+  span {
+      display: block;
+      color: #8AC1F8;
+      font-size: 0.25em;
+      line-height: 16px;
+      padding: 7px 0;
+  }
+}
+
+.day_light {
+  float: left;
+  height: 28px;
+  width: 100%;
+  margin: 2px 0px 0px 0px !important;
+  padding: 0px;
+  text-align: center;
+}
