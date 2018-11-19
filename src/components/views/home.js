@@ -5,7 +5,7 @@ import {
     Button,
 } from 'reactstrap';
 import Day from "./day";
-import DaysService from '../services/DaysService';
+import DaysService from '../services/daysService';
 
 const days_service = new DaysService();
 
