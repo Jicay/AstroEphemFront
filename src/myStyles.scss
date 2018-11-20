@@ -1,16 +1,23 @@
-body {
-  background-color: skyblue;
-  color: black;
+html, body, input, textarea, select, button {
+  border-color: #5a5956;
+  color: #f0ece2;
 }
 
-.app {
-  width: 450px;
-  margin: 0 auto;
-  padding-top: 50px;
+body {
+  background-color: #2b313b !important;
+}
 
-  & .app-header {
-    height: 250px;
-    width: inherit;
-    object-fit: cover;
-  }
+div.app {
+  background-color: #18191b;
+  position: relative;
+  top: -44px;
+  padding: 0px 14px 14px 14px;
+}
+
+.page-header {
+  background-color: #111012 !important;
+  border: none initial;
+  margin: 0;
+  padding: 10px 0px 0px 0px;
+  text-align: center;
 }

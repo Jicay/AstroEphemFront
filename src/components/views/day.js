@@ -114,7 +114,33 @@ export default class Day extends Component {
                         {day}
                         <span>{year}</span>
                     </Col>
-                    <Col xs="9">
+                    <Col xs="9" className="day_lights">
+                        <div>
+                            <div className="hour">00</div>
+                            <div className="hour">01</div>
+                            <div className="hour">02</div>
+                            <div className="hour">03</div>
+                            <div className="hour">04</div>
+                            <div className="hour">05</div>
+                            <div className="hour">06</div>
+                            <div className="hour">07</div>
+                            <div className="hour">08</div>
+                            <div className="hour">09</div>
+                            <div className="hour">10</div>
+                            <div className="hour">11</div>
+                            <div className="hour">12</div>
+                            <div className="hour">13</div>
+                            <div className="hour">14</div>
+                            <div className="hour">15</div>
+                            <div className="hour">16</div>
+                            <div className="hour">17</div>
+                            <div className="hour">18</div>
+                            <div className="hour">19</div>
+                            <div className="hour">20</div>
+                            <div className="hour">21</div>
+                            <div className="hour">22</div>
+                            <div className="hour">23</div>
+                        </div>
                         <div className="day_light" style={{background: styleSun}}/>
                         <div className="day_light" style={{background: styleMoon}}/>
                     </Col>

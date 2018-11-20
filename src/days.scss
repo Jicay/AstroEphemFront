@@ -18,9 +18,26 @@
   }
 }
 
+.hour {
+  color: #fffffd;
+  width: 3.948% !important;
+  float: left;
+  display: block;
+  text-align: center;
+  font-size: 1em;
+  padding: 0 !important;
+  margin: 0px 0.22% 0px 0px !important;
+  background-color: #104377;
+}
+
+.day_lights {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
 .day_light {
   float: left;
-  height: 28px;
+  height: 15px;
   width: 100%;
   margin: 2px 0px 0px 0px !important;
   padding: 0px;
