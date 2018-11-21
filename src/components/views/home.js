@@ -5,6 +5,7 @@ import {
     Button,
 } from 'reactstrap';
 import Day from "./day";
+import LocationSearchInput from "./locationSeachInput"
 import DaysService from '../services/daysService';
 
 const days_service = new DaysService();
@@ -28,6 +29,7 @@ export default class Home extends Component {
         console.log(days);
         return (
             <Container className="home">
+                <LocationSearchInput/>
                 { days.map((day) => (
                     <Day day={day}/>
                 ))}
