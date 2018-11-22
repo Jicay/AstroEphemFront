@@ -8,10 +8,32 @@ body {
 }
 
 div.app {
-  background-color: #18191b;
+  background-color: #ffffff;
   position: relative;
   top: -44px;
-  padding: 0px 14px 14px 14px;
+}
+
+.content {
+  position: relative;
+  background-color: #FFFFFF;
+  .container .row {
+    margin: 0;
+    flex-wrap: nowrap;
+  }
+}
+
+.location-form {
+  position: relative;
+  background-color: #5089C6;
+  padding: 20px;
+
+  small {
+    color: #FFFFFF !important;
+  }
+
+  .form-group > * {
+    margin-left: 5px;
+  }
 }
 
 .page-header {

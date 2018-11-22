@@ -114,7 +114,7 @@ export default class Day extends Component {
                         {day}
                         <span>{year}</span>
                     </Col>
-                    <Col xs="9" className="day_lights">
+                    <Col xs="10" className="day_lights">
                         <div>
                             <div className="hour">00</div>
                             <div className="hour">01</div>
