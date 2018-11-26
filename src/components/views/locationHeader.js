@@ -1,6 +1,6 @@
 import React from "react";
-import LocationSearchInput from "./locationSeachInput";
 import { Button, Form, FormGroup, Input, FormText } from 'reactstrap';
+import Geocoder from 'react-select-geocoder-tilehosting';
 
 export default class LocationHeader extends React.Component {
     constructor(props) {
@@ -13,7 +13,11 @@ export default class LocationHeader extends React.Component {
             <div class="location-form">
                 <Form inline="true">
                     <FormGroup>
-                        <LocationSearchInput/>
+                        <Geocoder
+                            apiKey="FYgsALgP5zjyDjKnXBpH"
+                            onChange={(value) => console.log(value)}
+                            className="form-control"
+                            geolocate={true}/>
                         <FormText xs="1">
                             ou saisissez vos coordonnées :
                         </FormText>
