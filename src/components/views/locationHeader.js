@@ -13,9 +13,13 @@ import 'react-bootstrap-typeahead/css/Typeahead-bs4.css';
 const SEARCH_URI = 'https://astroephem.herokuapp.com/locations';
 
 export default class LocationHeader extends React.Component {
+
     constructor(props) {
         super(props);
-        this.state = { address: '' };
+        this.state = {
+            lat: '',
+            lon: ''
+        };
     }
 
     _handleSearch = (query) => {
@@ -44,8 +48,19 @@ export default class LocationHeader extends React.Component {
             });
     }
 
+    handleLatChange(e) {
+        console.log(this, e.target.value);
+        this.setState({lat: e.target.value});
+    }
+
+    handleLonChange(e) {
+        this.setState({lon: e.target.value});
+    }
+
     render() {
-        const {onClick} = this.props;
+        let lat;
+        let lon;
+        const {refreshLatLon} = this.props;
         return (
             <div class="location-form">
                 <Form inline="true">
@@ -66,9 +81,9 @@ export default class LocationHeader extends React.Component {
                         <FormText xs="1">
                             ou saisissez vos coordonnées :
                         </FormText>
-                        <Input id="latitude" name="latitude" placeholder="Latitude"/>
-                        <Input id="longitude" name="longitude" placeholder="Longitude"/>
-                        <Button onClick={onClick}>Valider</Button>
+                        <Input id="latitude" name="latitude" placeholder="Latitude" value={this.state.lat} onChange={this.handleLatChange} />
+                        <Input id="longitude" name="longitude" placeholder="Longitude" value={this.state.lon} onChange={this.handleLonChange}/>
+                        <Button onClick={() => {console.log(this.state.lat, this.state.lon); refreshLatLon(this.state.lat, this.state.lon)}}>Valider</Button>
                     </FormGroup>
                 </Form>
             </div>

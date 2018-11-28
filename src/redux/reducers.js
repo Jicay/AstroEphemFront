@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { GET_WEEK_INFOS } from './action';
 
 function getWeekInfo(state = {}, action) {
+    console.log(action);
     switch (action.type) {
         case GET_WEEK_INFOS:
             return {
