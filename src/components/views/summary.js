@@ -12,9 +12,10 @@ export default class Summary extends React.Component {
     }
 
     render() {
-        const { lon, lat } = this.props
+        const { lon, lat } = this.props;
+        console.log(this.props);
         return (
-            <div>
+            <div class="summary">
                 <span>Longitude :</span><span>{lon}</span>
                 <span>Latitude :</span><span>{lat}</span>
             </div>

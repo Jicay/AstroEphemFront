@@ -3,7 +3,7 @@ import { GET_WEEK_INFOS } from './action';
 
 function getWeekInfo(state = {}, action) {
     switch (action.type) {
-        case GET_WEEK_INFOS:
+        case "GET_WEEK_INFOS":
             return {
                 ...state,
                 lat: action.lon,
@@ -15,5 +15,5 @@ function getWeekInfo(state = {}, action) {
 }
 
 export default combineReducers({
-    getWeekInfo
+    weekInfo: getWeekInfo
 });

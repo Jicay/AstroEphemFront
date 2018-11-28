@@ -1,18 +1,18 @@
-import { connect } from 'react-redux';
-import Summary from "../views/summary";
+import {connect} from 'react-redux';
 import {GET_WEEK_INFOS} from "../../redux/action";
 import LocationHeader from "../views/locationHeader";
 
-const mapStateToProps = state => {
+const mapStateToProps = () => {
     return {}
 }
 
-const mapDispatchToProps = dispatch  => {
+const mapDispatchToProps = (dispatch)  => {
     return {
-        onClick: () => dispatch(GET_WEEK_INFOS)
+        refreshLatLon: (lat, lon) => dispatch(GET_WEEK_INFOS(lat, lon))
     }
 }
 
 export default connect(
+    mapStateToProps,
     mapDispatchToProps
 )(LocationHeader)
