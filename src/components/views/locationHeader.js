@@ -45,6 +45,7 @@ export default class LocationHeader extends React.Component {
     }
 
     render() {
+        const {onClick} = this.props;
         return (
             <div class="location-form">
                 <Form inline="true">
@@ -67,7 +68,7 @@ export default class LocationHeader extends React.Component {
                         </FormText>
                         <Input id="latitude" name="latitude" placeholder="Latitude"/>
                         <Input id="longitude" name="longitude" placeholder="Longitude"/>
-                        <Button>Valider</Button>
+                        <Button onClick={onClick}>Valider</Button>
                     </FormGroup>
                 </Form>
             </div>
