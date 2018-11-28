@@ -7,6 +7,9 @@ import {
 import Day from "./day";
 import LocationHeader from "./locationHeader"
 import DaysService from '../services/daysService';
+import LocationHeaderContainer from "../containers/LocationHeaderContainer";
+import SummaryContainer from "../containers/SummaryContainer";
+import Summary from "../containers/SummaryContainer";
 
 const days_service = new DaysService();
 
@@ -29,7 +32,8 @@ export default class Home extends Component {
         console.log(days);
         return (
             <Container className="home">
-                <LocationHeader/>
+                <LocationHeaderContainer/>
+                <SummaryContainer/>
                 <div class="content">
                     { days.map((day) => (
                         <Day day={day}/>
