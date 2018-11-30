@@ -1,9 +1,17 @@
 export const REQUEST_WEEK = 'REQUEST_WEEK';
+export const RECEIVE_WEEK = 'RECEIVE_WEEK';
 
 export const requestWeek = (lat, lon) => ({
     type: REQUEST_WEEK,
     lat,
     lon
+});
+
+export const receiveWeek = (lat, lon, json) => ({
+    type: RECEIVE_WEEK,
+    lat,
+    lon,
+    week: json.data.children.map(child => child.data),
 });
 
 export const GET_WEEK_INFOS = (lat, lon) =>  ({
@@ -13,10 +21,10 @@ export const GET_WEEK_INFOS = (lat, lon) =>  ({
 });
 
 const fetchWeek = (lat, lon) => dispatch => {
-    dispatch(requestWeek(subreddit))
+    dispatch(requestWeek(lat, lon))
     return fetch(`https://astroephem.herokuapp.com/days?lat=${lat}&lon=${lon}`)
         .then(response => response.json())
-        .then(json => dispatch(receivePosts(subreddit, json)))
+        .then(json => dispatch(receiveWeek(lat, lon, json)))
 }
 
 const shouldFetchWeek = (state) => {
