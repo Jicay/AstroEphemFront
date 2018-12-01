@@ -57,7 +57,7 @@ export default class LocationHeader extends React.Component {
     };
 
     render() {
-        const {refreshLatLon} = this.props;
+        const {refreshWeek} = this.props;
         return (
             <div class="location-form">
                 <Form inline="true">
@@ -80,7 +80,7 @@ export default class LocationHeader extends React.Component {
                         </FormText>
                         <Input id="latitude" name="latitude" placeholder="Latitude" value={this.state.lat} onChange={this.handleLatChange} />
                         <Input id="longitude" name="longitude" placeholder="Longitude" value={this.state.lon} onChange={this.handleLonChange}/>
-                        <Button onClick={() => {refreshLatLon(this.state.lat, this.state.lon)}}>Valider</Button>
+                        <Button onClick={() => {refreshWeek(this.state.lat, this.state.lon)}}>Valider</Button>
                     </FormGroup>
                 </Form>
             </div>

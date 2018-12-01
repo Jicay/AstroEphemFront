@@ -1,18 +1,21 @@
 import {connect} from 'react-redux';
+import Week from "../views/Week";
 import {fetchWeekIfNeeded} from "../../redux/action";
-import LocationHeader from "../views/LocationHeader";
 
-const mapStateToProps = () => {
-    return {}
+const mapStateToProps = state => {
+    console.log("Week", state);
+    return {
+        ...state.weekInfo
+    }
 }
 
 const mapDispatchToProps = (dispatch)  => {
     return {
-        refreshWeek: (lat, lon) => dispatch(fetchWeekIfNeeded(lat, lon))
+        onLoad: (lat, lon) => dispatch(fetchWeekIfNeeded(lat, lon))
     }
 }
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(LocationHeader)
+)(Week)

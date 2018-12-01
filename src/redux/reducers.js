@@ -1,20 +1,20 @@
 import { combineReducers } from 'redux';
 import { REQUEST_WEEK, RECEIVE_WEEK } from './action';
 
-function getWeekInfo(state = {}, action) {
+function weekInfo(state = {}, action) {
     switch (action.type) {
         case REQUEST_WEEK:
         case RECEIVE_WEEK:
             return {
                 ...state,
-                week: week(state.week, action)
+                ...week(state.week, action)
             };
         default:
             return state
     }
 }
 
-function week(state = {isFetching: false}, action) {
+function week(state = {isFetching: false, lat: 0, lon: 0, weekDetails: []}, action) {
     switch (action.type) {
         case REQUEST_WEEK:
             return {
@@ -35,5 +35,5 @@ function week(state = {isFetching: false}, action) {
 }
 
 export default combineReducers({
-    weekInfo: getWeekInfo
+    weekInfo
 });

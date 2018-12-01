@@ -81,11 +81,13 @@ export default class Day extends Component {
             "#000000 " + (percent_s_astronomical +1) + "%" +
             ")";
 
-        const moon_rising = new Date(moon.rising)
-        const moon_setting = new Date(moon.setting)
+        const moon_rising = moon.rising === null ? null : new Date(moon.rising)
+        const moon_setting = moon.setting === null ? null : new Date(moon.setting)
 
-        const percent_m_rising = this.percentage(moon_rising, nbSecond);
-        const percent_m_setting = this.percentage(moon_setting, nbSecond);
+        const percent_m_rising = moon_rising === null ? 0 : this.percentage(moon_rising, nbSecond);
+        const percent_m_setting = moon_setting === null ? 100 : this.percentage(moon_setting, nbSecond);
+
+        console.log({date, percent_m_rising, moon_rising})
 
         let styleMoon = "";
 
@@ -94,7 +96,7 @@ export default class Day extends Component {
                 "#2B5695 " + (percent_m_rising - 1) + "%, " +
                 "#AAAAAA " + percent_m_rising + "%, " +
                 "#AAAAAA " + percent_m_setting + "%, " +
-                "#2B5695 " + (percent_m_setting + 1) + "%" +
+                 "#2B5695 " + (percent_m_setting + 1) + "%" +
                 ")";
         } else {
             styleMoon = "linear-gradient(to right, " +
@@ -116,30 +118,9 @@ export default class Day extends Component {
                     </Col>
                     <Col xs="10" className="day_lights">
                         <div>
-                            <div className="hour">00</div>
-                            <div className="hour">01</div>
-                            <div className="hour">02</div>
-                            <div className="hour">03</div>
-                            <div className="hour">04</div>
-                            <div className="hour">05</div>
-                            <div className="hour">06</div>
-                            <div className="hour">07</div>
-                            <div className="hour">08</div>
-                            <div className="hour">09</div>
-                            <div className="hour">10</div>
-                            <div className="hour">11</div>
-                            <div className="hour">12</div>
-                            <div className="hour">13</div>
-                            <div className="hour">14</div>
-                            <div className="hour">15</div>
-                            <div className="hour">16</div>
-                            <div className="hour">17</div>
-                            <div className="hour">18</div>
-                            <div className="hour">19</div>
-                            <div className="hour">20</div>
-                            <div className="hour">21</div>
-                            <div className="hour">22</div>
-                            <div className="hour">23</div>
+                            {[...Array(24).keys()].map(i => (
+                                <div className="hour">{("0" + i).slice(-2)}</div>
+                            ))}
                         </div>
                         <div className="day_light" style={{background: styleSun}}/>
                         <div className="day_light" style={{background: styleMoon}}/>
