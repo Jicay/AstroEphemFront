@@ -5,6 +5,8 @@ import React from "react";
 
 
 import '../../days.scss';
+import MoonDetail from "./MoonDetail";
+import SunDetail from "./SunDetail";
 
 export default class Day extends Component {
     static propTypes = {
@@ -43,71 +45,6 @@ export default class Day extends Component {
             year: "numeric"
         }).format(new Date(date));
 
-        const rising_astronomical = new Date(sun.rising_astronomical)
-        const rising_naval = new Date(sun.rising_naval)
-        const rising_civil = new Date(sun.rising_civil)
-        const rising = new Date(sun.rising)
-        const setting = new Date(sun.setting)
-        const setting_civil = new Date(sun.setting_civil)
-        const setting_naval = new Date(sun.setting_naval)
-        const setting_astronomical = new Date(sun.setting_astronomical)
-
-        const nbSecond = 24*60*60;
-        const percent_r_astronomical = this.percentage(rising_astronomical, nbSecond);
-        const percent_r_naval = this.percentage(rising_naval, nbSecond);
-        const percent_r_civil = this.percentage(rising_civil, nbSecond);
-        const percent_rising = this.percentage(rising, nbSecond);
-        const percent_setting = this.percentage(setting, nbSecond);
-        const percent_s_civil = this.percentage(setting_civil, nbSecond);
-        const percent_s_naval = this.percentage(setting_naval, nbSecond);
-        const percent_s_astronomical = this.percentage(setting_astronomical, nbSecond);
-
-        const styleSun = "linear-gradient(to right, " +
-            "#000000 " + (percent_r_astronomical - 1) + "%, " +
-            "#2B5695 " + percent_r_astronomical + "%, " +
-            "#2B5695 " + (percent_r_naval - 1) + "%, " +
-            "#4B7BC0 " + percent_r_naval + "%, " +
-            "#4B7BC0 " + (percent_r_civil - 1) + "%, " +
-            "#F0B076 " + percent_r_civil + "%, " +
-            "#F0B076 " + (percent_rising - 1) + "%, " +
-            "#FFFE88 " + percent_rising + "%, " +
-            "#FFFE88 " + percent_setting + "%, " +
-            "#F0B076 " + (percent_setting + 1) + "%, " +
-            "#F0B076 " + percent_s_civil + "%, " +
-            "#4B7BC0 " + (percent_s_civil + 1) + "%, " +
-            "#4B7BC0 " + percent_s_naval + "%, " +
-            "#2B5695 " + (percent_s_naval + 1) + "%, " +
-            "#2B5695 " + percent_s_astronomical + "%, " +
-            "#000000 " + (percent_s_astronomical +1) + "%" +
-            ")";
-
-        const moon_rising = moon.rising === null ? null : new Date(moon.rising)
-        const moon_setting = moon.setting === null ? null : new Date(moon.setting)
-
-        const percent_m_rising = moon_rising === null ? 0 : this.percentage(moon_rising, nbSecond);
-        const percent_m_setting = moon_setting === null ? 100 : this.percentage(moon_setting, nbSecond);
-
-        console.log({date, percent_m_rising, moon_rising})
-
-        let styleMoon = "";
-
-        if (percent_m_rising < percent_m_setting) {
-            styleMoon = "linear-gradient(to right, " +
-                "#2B5695 " + (percent_m_rising - 1) + "%, " +
-                "#AAAAAA " + percent_m_rising + "%, " +
-                "#AAAAAA " + percent_m_setting + "%, " +
-                 "#2B5695 " + (percent_m_setting + 1) + "%" +
-                ")";
-        } else {
-            styleMoon = "linear-gradient(to right, " +
-                "#AAAAAA " + percent_m_setting + "%, " +
-                "#2B5695 " + (percent_m_setting + 1) + "%, " +
-                "#2B5695 " + (percent_m_rising - 1) + "%, " +
-                "#AAAAAA " + percent_m_rising + "%" +
-                ")";
-        }
-
-        console.log(weekDay, day, year);
         return (
             <Container className="day">
                 <Row>
@@ -119,11 +56,12 @@ export default class Day extends Component {
                     <Col xs="10" className="day_lights">
                         <div>
                             {[...Array(24).keys()].map(i => (
-                                <div className="hour">{("0" + i).slice(-2)}</div>
+                                <div key ={i} className="hour">{("0" + i).slice(-2)}</div>
                             ))}
                         </div>
-                        <div className="day_light" style={{background: styleSun}}/>
-                        <div className="day_light" style={{background: styleMoon}}/>
+                        <SunDetail sun={sun}/>
+                        {/*<div className="day_light" style={{background: styleSun}}/>*/}
+                        <MoonDetail moon={moon} />
                     </Col>
                 </Row>
             </Container>

@@ -1,13 +1,13 @@
 import React, {Component} from "react";
 import Day from "./Day";
-import {array, number} from "prop-types";
+import {array, string} from "prop-types";
 import Summary from "./Summary";
 
-export default class Home extends Component {
+export default class Week extends Component {
 
     static propTypes = {
-        lat: number,
-        lon: number,
+        lat: string,
+        lon: string,
         weekDetails: array
     }
 
@@ -17,7 +17,7 @@ export default class Home extends Component {
 
     componentDidMount() {
         const {onLoad} = this.props;
-        onLoad(0, 0);
+        onLoad("0", "0");
     }
 
     render() {
@@ -26,8 +26,8 @@ export default class Home extends Component {
             <div className="content">
                 <Summary lat={lat} lon={lon}/>
                 <div>
-                    { weekDetails === undefined ? null : weekDetails.map((day) => (
-                        <Day day={day}/>
+                    { weekDetails === undefined ? null : weekDetails.map((day, id) => (
+                        <Day key={id} day={day}/>
                     ))}
                 </div>
             </div>

@@ -3,7 +3,6 @@ import Week from "../views/Week";
 import {fetchWeekIfNeeded} from "../../redux/action";
 
 const mapStateToProps = state => {
-    console.log("Week", state);
     return {
         ...state.weekInfo
     }

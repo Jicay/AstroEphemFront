@@ -59,8 +59,8 @@ export default class LocationHeader extends React.Component {
     render() {
         const {refreshWeek} = this.props;
         return (
-            <div class="location-form">
-                <Form inline="true">
+            <div className="location-form">
+                <Form inline={true}>
                     <FormGroup>
                         <AsyncTypeahead
                             {...this.state}
@@ -69,6 +69,7 @@ export default class LocationHeader extends React.Component {
                             onSearch={this._handleSearch}
                             placeholder="Chercher un lieu..."
                             align="left"
+                            isLoading={false}
                             emptyLabel="Aucun lieu trouvé"
                             searchText="Recherche en cours"
                             renderMenuItemChildren={(option, props) => (

@@ -14,7 +14,7 @@ function weekInfo(state = {}, action) {
     }
 }
 
-function week(state = {isFetching: false, lat: 0, lon: 0, weekDetails: []}, action) {
+function week(state = {isFetching: false, lat: "0", lon: "0", weekDetails: []}, action) {
     switch (action.type) {
         case REQUEST_WEEK:
             return {
