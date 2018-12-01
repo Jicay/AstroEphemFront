@@ -60,7 +60,6 @@ export default class Day extends Component {
                             ))}
                         </div>
                         <SunDetail sun={sun}/>
-                        {/*<div className="day_light" style={{background: styleSun}}/>*/}
                         <MoonDetail moon={moon} />
                     </Col>
                 </Row>

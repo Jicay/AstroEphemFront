@@ -11,6 +11,10 @@ export default class Week extends Component {
         weekDetails: array
     }
 
+    static defaultProps = {
+        weekDetails: []
+    }
+
     constructor(props) {
         super(props);
     }
@@ -26,7 +30,7 @@ export default class Week extends Component {
             <div className="content">
                 <Summary lat={lat} lon={lon}/>
                 <div>
-                    { weekDetails === undefined ? null : weekDetails.map((day, id) => (
+                    { weekDetails.map((day, id) => (
                         <Day key={id} day={day}/>
                     ))}
                 </div>

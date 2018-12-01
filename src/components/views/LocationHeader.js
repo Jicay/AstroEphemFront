@@ -1,18 +1,18 @@
 import React from "react";
-import { Button, Form, FormGroup, Input, FormText } from 'reactstrap';
-import fetch from 'isomorphic-fetch';
-import { AsyncTypeahead } from 'react-bootstrap-typeahead';
+import {Button, Form, FormGroup, FormText, Input} from 'reactstrap';
+import {AsyncTypeahead} from 'react-bootstrap-typeahead';
+import 'react-bootstrap-typeahead/css/Typeahead.css';
+import 'react-bootstrap-typeahead/css/Typeahead-bs4.css';
 
 // Polyfill Promises for IE and older browsers.
 require('es6-promise').polyfill();
 
 
-import 'react-bootstrap-typeahead/css/Typeahead.css';
-import 'react-bootstrap-typeahead/css/Typeahead-bs4.css';
-
-const SEARCH_URI = 'https://astroephem.herokuapp.com/locations';
-
 export default class LocationHeader extends React.Component {
+
+    static defaultProps = {
+        isFetching: false
+    }
 
     constructor(props) {
         super(props);
@@ -20,32 +20,6 @@ export default class LocationHeader extends React.Component {
             lat: '',
             lon: ''
         };
-    }
-
-    _handleSearch = (query) => {
-        this.setState({isLoading: true});
-        this.makeAndHandleRequest(query)
-            .then(({options}) => {
-                this.setState({
-                    isLoading: false,
-                    options,
-                });
-            });
-    };
-
-    makeAndHandleRequest(query, page = 1) {
-        return fetch(`${SEARCH_URI}?query=${query}`)
-            .then((resp) => resp.json())
-            .then(({results, total_count}) => {
-                const options = results.map((i) => ({
-                    city: i.city,
-                    country_code: i.country_code,
-                    country: i.country,
-                    lat: i.lat,
-                    lon: i.lon
-                }));
-                return {options, total_count};
-            });
     }
 
     handleLatChange = (e) => {
@@ -56,8 +30,23 @@ export default class LocationHeader extends React.Component {
         this.setState({lon: e.target.value});
     };
 
-    render() {
+    handleLocationChange = (e) => {
+        if (e.length === 0) {
+            return;
+        }
+        const {lat, lon} = e[0];
         const {refreshWeek} = this.props;
+        if (lat !== undefined && lon !== undefined) {
+            this.setState({
+                lon: lon.toFixed(2),
+                lat: lat.toFixed(2)
+            });
+            refreshWeek(lat.toFixed(2), lon.toFixed(2))
+        }
+    }
+
+    render() {
+        const {refreshWeek, isFetching, completeLocation, places} = this.props;
         return (
             <div className="location-form">
                 <Form inline={true}>
@@ -66,10 +55,12 @@ export default class LocationHeader extends React.Component {
                             {...this.state}
                             labelKey="city"
                             minLength={3}
-                            onSearch={this._handleSearch}
+                            onSearch={completeLocation}
+                            onChange={this.handleLocationChange}
                             placeholder="Chercher un lieu..."
+                            options={places}
                             align="left"
-                            isLoading={false}
+                            isLoading={isFetching}
                             emptyLabel="Aucun lieu trouvé"
                             searchText="Recherche en cours"
                             renderMenuItemChildren={(option, props) => (
