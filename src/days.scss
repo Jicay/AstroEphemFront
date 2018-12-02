@@ -33,6 +33,11 @@
 .day_lights {
   padding-right: 0 !important;
   padding-left: 0 !important;
+  margin-bottom: 5px !important;
+
+  div {
+    overflow: auto;
+  }
 }
 
 .day_light {
