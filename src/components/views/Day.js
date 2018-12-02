@@ -5,7 +5,7 @@ import React from "react";
 
 
 import '../../days.scss';
-import MoonDetail from "./MoonDetail";
+import PlanetDetail from "./PlanetDetail";
 import SunDetail from "./SunDetail";
 
 export default class Day extends Component {
@@ -22,7 +22,7 @@ export default class Day extends Component {
             rising_astronomical: string,
             setting_astronomical: string
         }),
-        moon: shape({
+        planet: shape({
             name: string,
             rising: string,
             setting: string
@@ -30,7 +30,7 @@ export default class Day extends Component {
     };
 
     render() {
-        const { date, sun, moon } = this.props.day;
+        const { date, sun, moon, venus, mars, jupiter, saturn } = this.props.day;
         const weekDay = new Intl.DateTimeFormat('fr-FR', {
             weekday: "long"
         }).format(new Date(date));
@@ -59,8 +59,14 @@ export default class Day extends Component {
                                 <div key ={i} className="hour">{("0" + i).slice(-2)}</div>
                             ))}
                         </div>
-                        <SunDetail sun={sun}/>
-                        <MoonDetail moon={moon} />
+                        <div>
+                            <SunDetail sun={sun}/>
+                            <PlanetDetail planet={moon} colorUp="#AAAAAA" colorDown="#2B5695"/>
+                            <PlanetDetail planet={venus} colorUp="#ad8d54" colorDown="#2B5695"/>
+                            <PlanetDetail planet={mars} colorUp="#c1440e" colorDown="#2B5695"/>
+                            <PlanetDetail planet={jupiter} colorUp="#ddb47e" colorDown="#2B5695"/>
+                            <PlanetDetail planet={saturn} colorUp="#fceead" colorDown="#2B5695"/>
+                        </div>
                     </Col>
                 </Row>
             </Container>

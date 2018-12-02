@@ -9,11 +9,10 @@ export const requestWeek = (lat, lon) => ({
     lon
 });
 
-export const receiveWeek = (lat, lon, json) => ({
+export const receiveWeek = (json) => ({
     type: RECEIVE_WEEK,
-    lat,
-    lon,
-    week: json,
+    location: json.location.results[0],
+    week: json.week,
 });
 
 export const requestLocation = (search) => ({
@@ -31,7 +30,7 @@ const fetchWeek = (lat, lon) => dispatch => {
     dispatch(requestWeek(lat, lon))
     return fetch(`https://astroephem.herokuapp.com/days?lat=${lat}&lon=${lon}`)
         .then(response => response.json())
-        .then(json => {dispatch(receiveWeek(lat, lon, json))})
+        .then(json => {dispatch(receiveWeek(json))})
 }
 
 const shouldFetchWeek = (state) => {

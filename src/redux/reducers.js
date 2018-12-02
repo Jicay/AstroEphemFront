@@ -25,8 +25,7 @@ function week(state = {isFetching: false, lat: "0", lon: "0", weekDetails: []}, 
             return {
                 ...state,
                 isFetching: false,
-                lat: action.lat,
-                lon: action.lon,
+                location: action.location,
                 weekDetails: action.week
             }
         default:

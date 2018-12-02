@@ -1,23 +1,21 @@
 import React from "react";
-import { string } from 'prop-types'
+import {Container} from "reactstrap";
 
 export default class Summary extends React.Component {
-    static propTypes = {
-        lon: string,
-        lat: string
-    }
 
     constructor(props) {
         super(props);
     }
 
     render() {
-        const { lon, lat } = this.props;
+        const { lon, lat, city } = this.props.location;
+        if (lat === undefined || lon === undefined) {
+            return null;
+        }
         return (
-            <div className="summary">
-                <span>Latitude :</span><span>{lat}</span>
-                <span>Longitude :</span><span>{lon}</span>
-            </div>
+            <Container className="summary">
+                <h1>Ephéméride pour {city} ({lat.toFixed(2)}, {lon.toFixed(2)})</h1>
+            </Container>
         )
     }
 }

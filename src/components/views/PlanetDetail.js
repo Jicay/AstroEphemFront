@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-export default class MoonDetail extends Component {
+export default class PlanetDetail extends Component {
 
     constructor(props) {
         super(props);
@@ -8,18 +8,18 @@ export default class MoonDetail extends Component {
 
     render() {
 
-        const {moon} = this.props;
+        const {planet, colorUp, colorDown} = this.props;
         const nbSecond = 24*60*60;
 
-        const percentRising = this.percentage(moon.rising, nbSecond);
-        const percentSetting = this.percentage(moon.setting, nbSecond);
+        const percentRising = this.percentage(planet.rising, nbSecond);
+        const percentSetting = this.percentage(planet.setting, nbSecond);
 
         const gradient = [];
 
-        gradient.push(this.risingGradient(percentRising, "#AAAAAA", "#2B5695"))
-        gradient.push(this.settingGradient(percentSetting, "#AAAAAA", "#2B5695"))
+        gradient.push(this.risingGradient(percentRising, colorUp, colorDown))
+        gradient.push(this.settingGradient(percentSetting, colorUp, colorDown))
 
-        const gradientMoon = gradient.flat().sort((a, b) => {
+        const gradientPlanet = gradient.flat().sort((a, b) => {
             if (a.percent < b.percent) {
                 return -1;
             }
@@ -31,10 +31,10 @@ export default class MoonDetail extends Component {
             a.color + " " + a.percent + "%"
         )).join(", ");
 
-        let styleMoon = "linear-gradient(to right, " + gradientMoon + ")";
+        let stylePlanet = "linear-gradient(to right, " + gradientPlanet + ")";
 
         return (
-            <div className="day_light" style={{background: styleMoon}}/>
+            <div className="day_light" style={{background: stylePlanet}}/>
         )
     }
 
